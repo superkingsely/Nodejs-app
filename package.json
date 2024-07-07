@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/www.github.com/superkingsely#readme",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",

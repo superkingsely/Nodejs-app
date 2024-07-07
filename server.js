@@ -2,6 +2,11 @@ const express= require('express')
 const app=express()
 const router=require('./Router/router')
 const morgan = require('morgan')
+// mongoose
+const connectDb = require('./entity/DbContext')
+const dotenv=require('dotenv').config();
+
+connectDb();
 
 // logger
 app.use(morgan('dev'))
