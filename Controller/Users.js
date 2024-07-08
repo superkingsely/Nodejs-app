@@ -66,9 +66,11 @@ const loginUser=async(req,res)=>{
 }
 
 const currentUser=async(req,res)=>{
-    res.status(200).send({
-        messsage:'current user'
-    })
+    try{
+        res.json(req.username)
+    }catch(err){
+        console.log('errro from current user',err.message)
+    }
 }
 
 module.exports={registerUser,loginUser,currentUser}

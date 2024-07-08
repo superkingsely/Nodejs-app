@@ -4,7 +4,7 @@ const getContacts=async(req,res)=>{
     try{
 
         // const contacts=
-        const contacts= await Contact.find();
+        const contacts= await Contact.find({user_id:req.username.id});
         res.status(200).json(contacts)
     }catch(err){
         console.log("error from fetch array",err.message)
@@ -33,7 +33,9 @@ const postContact=async(req,res)=>{
         const newContact=await Contact.create({
             name:newdata.name,
             email:newdata.email,
-            phone:newdata.phone
+            phone:newdata.phone,
+            // form the val
+            user_id:req.username.id
         })
 
         console.log(req.body)
@@ -50,6 +52,11 @@ const putContact=async(req,res)=>{
         if(!contact){
             res.status(404)
             throw new Error('dat con not found')
+        }
+        // users control
+        if(contact.user_id.toSting()!=req.username.id){
+            res.status(403);
+            throw new Error('user not permited ')
         }
         // Edit
         const updatedContact=await Contact.findByIdAndUpdate(
@@ -71,6 +78,11 @@ const deleteContact=async(req,res)=>{
             res.status(404).send({
                 message:"contact not found"
             })
+        }
+         // users control
+         if(contact.user_id.toSting()!=req.username.id){
+            res.status(403);
+            throw new Error('user not permited ')
         }
         await Contact.findByIdAndDelete(req.params.id)
         res.status(200).send(contact)
