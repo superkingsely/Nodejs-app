@@ -1,15 +1,15 @@
 const express=require('express')
 const app=express()
-const mongoose=require('mongoose')
+const dotenv=require('dotenv').config()
+const router = require('./Router/router')
+const connectDB=require('./Entities/AppDbContext')
 
-mongoose.connect('mongodb+srv://superkingsely:superjesus1.m@superkingsely-cluster.qz77eax.mongodb.net/e-commerceDB?retryWrites=true&w=majority&appName=Superkingsely-cluster').then((connect)=>{
-    console.log('db sucess',connect.connection.name)
-}).catch((err)=>{
-    console.log(err.message)
-})
+// connectDB()
+
+
 
 app.use(express.json())
-
+app.use('/api',router)
 app.use('*',(req,res)=>{
     
     res.status(404).send('Page Not fund')
