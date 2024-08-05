@@ -4,7 +4,7 @@ const dotenv=require('dotenv').config()
 const router = require('./Router/router')
 const connectDB=require('./Entities/AppDbContext')
 
-// connectDB()
+connectDB()
 
 
 

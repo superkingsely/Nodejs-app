@@ -18,10 +18,10 @@ const productSchema=mongoose.Schema({
         type:Array,
     },
     size:{
-        type:String,
+        type:Array,
     },
     color:{
-        type:String,
+        type:Array,
     },
     price:{
         type:Number,
