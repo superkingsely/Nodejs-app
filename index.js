@@ -1,6 +1,8 @@
 const express=require('express')
 const app=express()
 const cors=require('cors')
+const dotenv=require('dotenv').config()
+const Stripe=require('stripe')(process.env.STRIPE_KEY);
 
 
 app.use(cors())
