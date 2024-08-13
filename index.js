@@ -17,13 +17,15 @@ app.post('/create-payment-intent',async(req,res)=>{
     })
     res.send({clientSecret:paymentIntent.client_secret})
     }catch(e){
+        console.log('hmm',e.message)
         return res.status(400).send({
-            error:{
+            
                 message:e.message
-            }
+            
         })
     }
     })
+
 
 app.listen(5000,()=>{
     console.log('appp is runing dear')
